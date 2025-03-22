@@ -98,9 +98,9 @@ public:
     void loadTasks() {
         ifstream file(filename);
         if (!file) {
-            cout << "No existing tasks file found. A new file will be created.\n";
+            cout << "No existing tasks file found. A new file will be created with the filename provided.\n";
             return;
-        }
+        } 
 
         string line;
         while (getline(file, line)) {
@@ -114,6 +114,8 @@ public:
             }
         }
         file.close();
+
+        cout << "File loaded! File will automatically be updated as you add, complete, and remove tasks.\n";
     }
 
     // Show menu
@@ -134,7 +136,7 @@ public:
                 case 2: viewTasks(); break;
                 case 3: removeTask(); break;
                 case 4: markCompleted(); break;
-                case 5: cout << "Exiting... Goodbye!\n"; break;
+                case 5: cout << "\nExiting... Goodbye!\n\n"; break;
                 default: cout << "Invalid choice, try again.\n";
             }
         } while (choice != 5);
@@ -146,7 +148,7 @@ int main() {
     string filename;
 
     cout << "\nWelcome to the Task Manager!\n";
-    cout << "Enter the filename to load tasks from: ";
+    cout << "\nEnter the filename to load tasks from: ";
     cin >> filename;
 
     TaskManager taskManager(filename);
