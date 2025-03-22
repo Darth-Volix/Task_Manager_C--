@@ -23,8 +23,9 @@
 
 # Useful Websites
 
-- [Web Site Name](http://url.link.goes.here)
-- [Web Site Name](http://url.link.goes.here)
+- [Microsoft C++ Documentation](https://learn.microsoft.com/en-us/cpp/cpp/?view=msvc-170)
+- [W3 Schools - C++ Tutorial](https://www.w3schools.com/cpp/default.asp)
+- [Codecademy - C++ Tutorial](https://www.codecademy.com/learn/learn-c-plus-plus)
 
 # Future Work
 
