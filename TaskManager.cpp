@@ -17,10 +17,10 @@ struct Task {
 class TaskManager {
 private:
     vector<Task> tasks;
-    const string filename = "tasks.txt"; // File to store tasks
+    string filename; // User-defined file to store tasks
 
 public:
-    TaskManager() {
+    TaskManager(const string& file) : filename(file) {
         loadTasks();
     }
 
@@ -43,7 +43,7 @@ public:
         }
         cout << "\nYour Tasks:\n";
         for (size_t i = 0; i < tasks.size(); ++i) {
-            cout << i + 1 << ". " << (tasks[i].completed ? "[✓] " : "[ ] ") << tasks[i].description << "\n";
+            cout << i + 1 << ". " << (tasks[i].completed ? "[X] " : "[ ] ") << tasks[i].description << "\n";
         }
     }
 
@@ -97,7 +97,10 @@ public:
     // Load tasks from a file
     void loadTasks() {
         ifstream file(filename);
-        if (!file) return;
+        if (!file) {
+            cout << "No existing tasks file found. A new file will be created.\n";
+            return;
+        }
 
         string line;
         while (getline(file, line)) {
@@ -140,7 +143,12 @@ public:
 
 // Main Function
 int main() {
-    TaskManager taskManager;
+    string filename;
+    cout << "Enter the filename to load tasks from: ";
+    cin >> filename;
+
+    TaskManager taskManager(filename);
     taskManager.showMenu();
+
     return 0;
 }
