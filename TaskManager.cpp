@@ -28,7 +28,7 @@ public:
     void addTask() {
         cin.ignore(); // Ignore leftover newline
         string desc;
-        cout << "Enter task description: ";
+        cout << "\nEnter task description: ";
         getline(cin, desc);
         tasks.emplace_back(desc);
         cout << "Task added successfully!\n";
@@ -38,7 +38,7 @@ public:
     // View all tasks
     void viewTasks() {
         if (tasks.empty()) {
-            cout << "No tasks available.\n";
+            cout << "\nNo tasks available.\n";
             return;
         }
         cout << "\nYour Tasks:\n";
@@ -53,7 +53,7 @@ public:
         if (tasks.empty()) return;
 
         int index;
-        cout << "Enter task number to remove: ";
+        cout << "\nEnter task number to remove: ";
         cin >> index;
         if (index > 0 && index <= tasks.size()) {
             tasks.erase(tasks.begin() + index - 1);
@@ -70,7 +70,7 @@ public:
         if (tasks.empty()) return;
 
         int index;
-        cout << "Enter task number to mark as completed: ";
+        cout << "\nEnter task number to mark as completed: ";
         cin >> index;
         if (index > 0 && index <= tasks.size()) {
             tasks[index - 1].completed = true;
