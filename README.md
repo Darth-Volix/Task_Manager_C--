@@ -4,7 +4,7 @@ This project is a relatively simple console-based to-do list application written
 
 I have always wanted to learn C++ because it is most often used in areas such as automotive engineering and robotics, where embedded systems are needed. I have always had a passion for robotics and automobiles, and my dream job is to work for Ford Motor Company as a Software Engineer. As my coursework at school does not teach C++ as a main language, I decided to learn the basics on my own and practice some other programming skills while doing it, resulting in this software program. 
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/K6f6u6wJ-XM)
 
 # Development Environment
 
