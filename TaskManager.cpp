@@ -144,6 +144,8 @@ public:
 // Main Function
 int main() {
     string filename;
+
+    cout << "\nWelcome to the Task Manager!\n";
     cout << "Enter the filename to load tasks from: ";
     cin >> filename;
 
