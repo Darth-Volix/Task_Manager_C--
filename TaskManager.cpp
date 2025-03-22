@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <limits>
 
 using namespace std;
 
@@ -22,6 +23,24 @@ private:
 public:
     TaskManager(const string& file) : filename(file) {
         loadTasks();
+    }
+
+    // Function to get valid integer input
+    int getValidIntInput(const string& prompt, int min, int max) {
+        int input;
+        while (true) {
+            cout << prompt;
+            cin >> input;
+
+            if (cin.fail() || input < min || input > max) {
+                cin.clear(); // Clear the error flag
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+                cout << "\nInvalid input. Please enter a number between " << min << " and " << max << ".\n";
+            } else {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear input buffer
+                return input;
+            }
+        }
     }
 
     // Add a task
@@ -52,16 +71,10 @@ public:
         viewTasks();
         if (tasks.empty()) return;
 
-        int index;
-        cout << "\nEnter task number to remove: ";
-        cin >> index;
-        if (index > 0 && index <= tasks.size()) {
-            tasks.erase(tasks.begin() + index - 1);
-            cout << "Task removed successfully!\n";
-            saveTasks();
-        } else {
-            cout << "Invalid task number.\n";
-        }
+        int index = getValidIntInput("\nEnter task number to remove: ", 1, tasks.size());
+        tasks.erase(tasks.begin() + index - 1);
+        cout << "Task removed successfully!\n";
+        saveTasks();
     }
 
     // Mark task as completed
@@ -69,16 +82,10 @@ public:
         viewTasks();
         if (tasks.empty()) return;
 
-        int index;
-        cout << "\nEnter task number to mark as completed: ";
-        cin >> index;
-        if (index > 0 && index <= tasks.size()) {
-            tasks[index - 1].completed = true;
-            cout << "Task marked as completed!\n";
-            saveTasks();
-        } else {
-            cout << "Invalid task number.\n";
-        }
+        int index = getValidIntInput("\nEnter task number to mark as completed: ", 1, tasks.size());
+        tasks[index - 1].completed = true;
+        cout << "Task marked as completed!\n";
+        saveTasks();
     }
 
     // Save tasks to a file
@@ -128,8 +135,8 @@ public:
             cout << "3. Remove Task\n";
             cout << "4. Mark Task as Completed\n";
             cout << "5. Exit\n";
-            cout << "Choose an option: ";
-            cin >> choice;
+
+            choice = getValidIntInput("Choose an option: ", 1, 5);
 
             switch (choice) {
                 case 1: addTask(); break;
@@ -137,7 +144,6 @@ public:
                 case 3: removeTask(); break;
                 case 4: markCompleted(); break;
                 case 5: cout << "\nExiting... Goodbye!\n\n"; break;
-                default: cout << "Invalid choice, try again.\n";
             }
         } while (choice != 5);
     }
