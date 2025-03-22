@@ -31,13 +31,13 @@ public:
         while (true) {
             cout << prompt;
             cin >> input;
-
+    
             if (cin.fail() || input < min || input > max) {
-                cin.clear(); // Clear the error flag
+                cin.clear(); // Clear error flag
                 cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
                 cout << "\nInvalid input. Please enter a number between " << min << " and " << max << ".\n";
             } else {
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear input buffer
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ensure buffer is cleared
                 return input;
             }
         }
@@ -45,7 +45,6 @@ public:
 
     // Add a task
     void addTask() {
-        cin.ignore(); // Ignore leftover newline
         string desc;
         cout << "\nEnter task description: ";
         getline(cin, desc);
